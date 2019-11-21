@@ -1,7 +1,9 @@
-package com.project.swhackaton;
+package com.project.swhackaton.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.project.swhackaton.R;
 
 public class MainActivity extends AppCompatActivity {
 
