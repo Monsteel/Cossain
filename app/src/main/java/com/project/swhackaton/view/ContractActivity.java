@@ -157,6 +157,7 @@ public class ContractActivity extends AppCompatActivity {
                 break;
 
             case R.id.fab_sub2:
+                Toast.makeText(this, "카메라 촬영 기능은 아직 준비중 입니다.", Toast.LENGTH_SHORT).show();
                 toggleFab();
                 break;
         }

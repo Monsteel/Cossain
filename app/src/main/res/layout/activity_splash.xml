@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".view.SplashActivity">
+    tools:context=".view.SplashActivity"
+    android:background="#655EEB">
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="80pt"
         android:layout_height="80pt"
-        app:srcCompat="@drawable/cosign_logo" />
+        app:srcCompat="@drawable/test_logo3" />
 
 </LinearLayout>

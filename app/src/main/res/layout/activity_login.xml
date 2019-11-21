@@ -20,7 +20,7 @@
             android:id="@+id/imageView2"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/test_logo" />
+            app:srcCompat="@drawable/test_logo3" />
 
         <LinearLayout
             android:layout_width="match_parent"
