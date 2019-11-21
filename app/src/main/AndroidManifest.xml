@@ -28,7 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.SignActivity" />
+        <activity android:name=".view.SignActivity"
+            android:screenOrientation="landscape">
+        </activity>
         <activity android:name=".view.ContractActivity" />
         <activity android:name=".view.SignUpAcitivty" />
         <activity android:name=".view.LoginActivity" />

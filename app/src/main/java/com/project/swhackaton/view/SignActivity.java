@@ -84,13 +84,25 @@ public class SignActivity extends AppCompatActivity {
         getUserInfo.enqueue(new Callback<Response<Data>>() {
             @Override
             public void onResponse(Call<Response<Data>> call, retrofit2.Response<Response<Data>> response) {
+                Glide.with(SignActivity.this).load(response.body().getData().getUrl()).into(contractImageView);
+
+                if(!response.body().getData().getA()){
+                    mSignaturePad.setVisibility(View.VISIBLE);
+                    signImageView = findViewById(R.id.imageView4);
+                    signImageView2 = findViewById(R.id.imageView2);
+                    if(response.body().getData().getData().getA_resolve()){
+
+                    }
+                    if(response.body().getData().getData().getB_resolve()){
+                        mSignaturePad.setVisibility(View.GONE);
+                    }
+                }
 
                 if(response.body().getData().getData().getB_resolve()){
                     Glide.with(SignActivity.this).load(response.body().getData().getB_url()).into(signImageView);
                 }
 
                 if(response.body().getData().getData().getA_resolve()){
-                    mSignaturePad.setVisibility(View.GONE);
                     signImageView2.setVisibility(View.VISIBLE);
                     Glide.with(SignActivity.this).load(response.body().getData().getA_url()).into(signImageView2);
                 }else{
@@ -151,5 +163,9 @@ public class SignActivity extends AppCompatActivity {
         }else{
             Toast.makeText(SignActivity.this, "서명 란이 비어있거나, 이미 서명한 계약입니다.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void onBackPressed(){
+        super.onBackPressed();
     }
 }

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,7 +20,6 @@ import com.project.swhackaton.model.ListModel;
 import com.project.swhackaton.network.Data;
 import com.project.swhackaton.network.NetRetrofit;
 import com.project.swhackaton.network.Response;
-import com.project.swhackaton.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,5 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void register(View view){
         startActivity(new Intent(MainActivity.this, ContractActivity.class));
+    }
+
+    public void onBackPressed(){
+        ActivityCompat.finishAffinity(this);
     }
 }

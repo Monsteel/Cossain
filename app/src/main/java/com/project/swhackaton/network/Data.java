@@ -14,6 +14,15 @@ public class Data {
     private String url;
     private String a_url;
     private String b_url;
+    private Boolean isA;
+
+    public Boolean getA() {
+        return isA;
+    }
+
+    public void setA(Boolean a) {
+        isA = a;
+    }
 
     public String getA_url() {
         return a_url;
