@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="비밀번호를 입력하세요"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:textSize="14dp"
             android:text="@={viewModel.pw}"/>
 
@@ -119,7 +119,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="휴대폰이 없으면, 가입이 불가능합니다."
-            android:inputType="textPersonName"
+            android:inputType="phone"
+            android:enabled="false"
             android:textSize="14dp"
             android:text="@={viewModel.phone}"/>
 
@@ -147,7 +148,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="E-mail을 입력하세요"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:textSize="14dp"
             android:text="@={viewModel.email}"/>
 

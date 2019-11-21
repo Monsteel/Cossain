@@ -1,5 +1,6 @@
 package com.project.swhackaton.viewmodel;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ public class LoginViewModel extends ViewModel {
     // View
     public String id;
     public String password;
+    public String token;
 
     // View Event
     public SingleLiveEvent<String> idNotInputEvent = new SingleLiveEvent<>();
@@ -37,7 +39,6 @@ public class LoginViewModel extends ViewModel {
     // Login
     public void login(){
         if(isValidId() && isValidPassword()){
-
             login_request.setId(id);
             login_request.setPassword(password);
 
@@ -72,8 +73,8 @@ public class LoginViewModel extends ViewModel {
         res.enqueue(new Callback<Response<Data>>() {
             @Override
             public void onResponse(Call<Response<Data>> call, retrofit2.Response<Response<Data>> response) {
-
                 if(response.code() == 200){
+                    token = response.body().getData().getAccessToken();
                     loginSuccessEvent.call();
                 } else if(response.code() == 403){
                     loginErrorEvent.call();

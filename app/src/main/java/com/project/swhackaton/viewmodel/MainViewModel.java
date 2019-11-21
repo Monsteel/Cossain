@@ -1,5 +1,7 @@
 package com.project.swhackaton.viewmodel;
 
-public class MainViewModel {
+import androidx.lifecycle.ViewModel;
+
+public class MainViewModel extends ViewModel {
 
 }

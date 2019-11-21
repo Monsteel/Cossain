@@ -5,15 +5,22 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 import com.project.swhackaton.R;
 import com.project.swhackaton.databinding.ActivityLoginBinding;
 import com.project.swhackaton.viewmodel.LoginViewModel;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,11 +37,10 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
-
         observerViewModel();
     }
 
-    public void observerViewModel(){
+    public void observerViewModel() {
 
         viewModel.idNotInputEvent.observe(this, new Observer<String>() {
             @Override
@@ -58,10 +64,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 SharedPreferences loginData = getSharedPreferences("Login", MODE_PRIVATE);
                 SharedPreferences.Editor editor = loginData.edit();
-
-                editor.putString("id", viewModel.id);
+                editor.putString("token", viewModel.token);
                 editor.commit();
-
+                Log.e("",viewModel.token+"");
+                Log.e("",loginData.getString("token","1")+"");
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
         });

@@ -1,5 +1,6 @@
 package com.project.swhackaton.network;
 
+import com.project.swhackaton.network.service.ContractService;
 import com.project.swhackaton.network.service.LoginService;
 import com.project.swhackaton.network.service.SignUpService;
 
@@ -29,6 +30,11 @@ public class NetRetrofit {
     SignUpService signUpService = retrofit.create(SignUpService.class);
     public SignUpService getSignUp() {
         return signUpService;
+    }
+
+    ContractService contractService = retrofit.create(ContractService.class);
+    public ContractService getContractService(){
+        return contractService;
     }
 }
 
