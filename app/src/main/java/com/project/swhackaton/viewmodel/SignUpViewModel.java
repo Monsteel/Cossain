@@ -3,7 +3,6 @@ package com.project.swhackaton.viewmodel;
 import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.project.swhackaton.network.Data;
@@ -15,19 +14,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class SignUpViewModel extends ViewModel {
-    public LiveData<String> id;
-    public LiveData<String> pw;
-    public LiveData<String> check_pw;
-    public LiveData<String> phone;
-    public LiveData<String> email;
+    public String id;
+    public String pw;
+    public String check_pw;
+    public String phone;
+    public String email;
+
 
     public void SignUpRequest() {
         if (isValid()) {
             SignUpRequest signUpRequest = new SignUpRequest();
-            signUpRequest.setId(id.getValue());
-            signUpRequest.setId(pw.getValue());
-            signUpRequest.setId(phone.getValue());
-            signUpRequest.setId(email.getValue());
+            signUpRequest.setId(id);
+            signUpRequest.setId(pw);
+            signUpRequest.setId(phone);
+            signUpRequest.setId(email);
 
 
             final Call<Response<Data>> res = NetRetrofit.getInstance().getSignUp().SignUpRequest(signUpRequest);
@@ -57,21 +57,21 @@ public class SignUpViewModel extends ViewModel {
     }
 
     private boolean isValidId() {
-        if (id.getValue().isEmpty()) {
+        if (id.isEmpty()) {
             return false;
         }
         return true;
     }
 
     private boolean isPhone() {
-        if (phone.getValue().isEmpty()) {
+        if (phone.isEmpty()) {
             return false;
         }
         return true;
     }
 
     private boolean isValidEmail() {
-        if (email.getValue().isEmpty()) {
+        if (email.isEmpty()) {
             return false;
         }
         return true;
