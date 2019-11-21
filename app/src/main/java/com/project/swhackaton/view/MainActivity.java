@@ -3,16 +3,8 @@ package com.project.swhackaton.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.project.swhackaton.R;
-import com.project.swhackaton.network.Data;
-import com.project.swhackaton.network.NetRetrofit;
-import com.project.swhackaton.network.Response;
-import com.project.swhackaton.network.requeset.LoginRequest;
-
-import retrofit2.Call;
-import retrofit2.Callback;
 
 public class MainActivity extends AppCompatActivity {
 

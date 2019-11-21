@@ -1,12 +1,19 @@
 package com.project.swhackaton.network.service;
 
-public interface SignUp {
-//    [example code]
-//
-//
-//    @GET("/channel")
-//    Call<Response<Data>> GetChannel(@Header("x-access-token") String token);
-//
+import com.project.swhackaton.network.Data;
+import com.project.swhackaton.network.Response;
+import com.project.swhackaton.network.requeset.SignUpRequest;
+
+import retrofit2.Call;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
+
+public interface SignUpService {
+
+
+    @POST("/auth/signup")
+    Call<Response<Data>> SignUpRequest(SignUpRequest signUpRequest);
+
 //    @Multipart
 //    @POST("/image/upload/thumbnail")
 //    Call<Response> uploadThumbnail(@Header("x-access-token") String token,
