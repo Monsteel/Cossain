@@ -67,7 +67,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onChanged(String s) {
                 Log.e("Login / Sign Up", "회원가입으로 이동합니다.");
-                // Intent intent = new Intent(LoginActivity.this, Sign);
+                Intent intent = new Intent(LoginActivity.this, SignUpAcitivty.class);
+                startActivity(intent);
             }
         });
     }

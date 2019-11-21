@@ -38,7 +38,7 @@ public class LoginViewModel extends ViewModel {
         if(isValidId() && isValidPassword()){
 
             login_request.setId(id);
-            login_request.setPw(password);
+            login_request.setPassword(password);
 
             loginUser();
         }

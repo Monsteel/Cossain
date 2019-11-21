@@ -2,7 +2,7 @@ package com.project.swhackaton.network.requeset;
 
 public class LoginRequest {
     private String id;
-    private String pw;
+    private String password;
 
     public String getId() {
         return id;
@@ -12,11 +12,11 @@ public class LoginRequest {
         this.id = id;
     }
 
-    public String getPw() {
-        return pw;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPw(String pw) {
-        this.pw = pw;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
