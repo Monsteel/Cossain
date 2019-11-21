@@ -1,9 +1,13 @@
 package com.project.swhackaton.viewmodel;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
 import com.project.swhackaton.network.Data;
 import com.project.swhackaton.network.NetRetrofit;
 import com.project.swhackaton.network.Response;
@@ -12,6 +16,8 @@ import com.project.swhackaton.widget.SingleLiveEvent;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+
+import static android.content.Context.TELEPHONY_SERVICE;
 
 public class SignUpViewModel extends ViewModel {
 
@@ -28,13 +34,18 @@ public class SignUpViewModel extends ViewModel {
     public SingleLiveEvent<String> isSuccessLogin = new SingleLiveEvent<>();
     public SingleLiveEvent<String> isFailedLogin = new SingleLiveEvent<>();
 
+    TelephonyManager telManager;
+
     public void SignUpRequest() {
         if (isValid()) {
 
+//            String PhoneNum;
+//            telManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+//
             SignUpRequest signUpRequest = new SignUpRequest();
             signUpRequest.setId(id);
-            signUpRequest.setPhoneNumber(pw);
-            signUpRequest.setPassword(phone);
+            signUpRequest.setPhoneNumber(phone);
+            signUpRequest.setPassword(pw);
             signUpRequest.setEmail(email);
             signUpRequest.setName(name);
 
@@ -53,8 +64,6 @@ public class SignUpViewModel extends ViewModel {
                     isFailedLogin.call();
                 }
             });
-
-
         }
         else{
             isvalid.call();
