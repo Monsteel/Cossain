@@ -1,5 +1,7 @@
 package com.project.swhackaton.viewmodel;
 
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
@@ -9,6 +11,7 @@ import com.project.swhackaton.network.Response;
 import com.project.swhackaton.network.requeset.LoginRequest;
 import com.project.swhackaton.widget.SingleLiveEvent;
 
+import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -24,6 +27,7 @@ public class LoginViewModel extends ViewModel {
 
     public SingleLiveEvent<String> loginSuccessEvent = new SingleLiveEvent<>();
     public SingleLiveEvent<String> loginErrorEvent = new SingleLiveEvent<>();
+    public SingleLiveEvent<String> loginServerErrorEvent = new SingleLiveEvent<>();
 
     public SingleLiveEvent<String> signEvent = new SingleLiveEvent<>();
 
@@ -68,12 +72,17 @@ public class LoginViewModel extends ViewModel {
         res.enqueue(new Callback<Response<Data>>() {
             @Override
             public void onResponse(Call<Response<Data>> call, retrofit2.Response<Response<Data>> response) {
-                loginSuccessEvent.call();
+
+                if(response.code() == 200){
+                    loginSuccessEvent.call();
+                } else if(response.code() == 403){
+                    loginErrorEvent.call();
+                }
             }
 
             @Override
             public void onFailure(Call<Response<Data>> call, Throwable t) {
-                loginErrorEvent.call();
+                loginServerErrorEvent.call();
             }
         });
     }
