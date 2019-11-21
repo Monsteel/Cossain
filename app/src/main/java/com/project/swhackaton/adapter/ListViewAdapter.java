@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.swhackaton.R;
 import com.project.swhackaton.model.ListModel;
+import com.project.swhackaton.view.SignActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
         ListModel listModel = mDataList.get(position);
 
         holder.title.setText(listModel.getTitle());
-        holder.content.setText("계약자 : "+listModel.getA_id()+"\n피 계약자"+listModel.getB_id());
+        holder.content.setText("계약자 1 : "+listModel.getA_id()+"\n계약자 2 : "+listModel.getB_id());
 
         if(listModel.isResolve()) {
             holder.status.setTextColor(Color.parseColor("#655EEB"));
@@ -53,9 +54,12 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
         }
 
         holder.cardView.setOnClickListener(v -> {
-            Activity activity = (Activity) holder.content.getContext();
-            Intent intent = new Intent(holder.title.getContext(), ListModel.class);
-            activity.startActivity(intent);
+            if(!mDataList.get(position).isResolve()){
+                Activity activity = (Activity) holder.content.getContext();
+                Intent intent = new Intent(holder.title.getContext(), SignActivity.class);
+                intent.putExtra("id",mDataList.get(position).get_id());
+                activity.startActivity(intent);
+            }
         });
     }
 
