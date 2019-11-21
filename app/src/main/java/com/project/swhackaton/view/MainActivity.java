@@ -5,8 +5,14 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
@@ -37,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loginData =  getSharedPreferences("Login", MODE_PRIVATE);
+
 
         if(checkLogin()){
             binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
@@ -78,6 +85,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+        initLayout();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_item, menu);
+        return true;
+    }
+    // Toolbar 설정
+    public void initLayout(){
+        setSupportActionBar(findViewById(R.id.toolbar3));
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        startActivity(new Intent(MainActivity.this, ContractActivity.class));
+        return super.onOptionsItemSelected(item);
     }
 
     public boolean checkLogin() {
@@ -86,10 +113,6 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return true;
-    }
-
-    public void register(View view){
-        startActivity(new Intent(MainActivity.this, ContractActivity.class));
     }
 
     public void onBackPressed(){

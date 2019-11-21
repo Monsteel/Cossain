@@ -121,13 +121,10 @@ public class ContractActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case android.R.id.home:
-                Toast.makeText(this, "취소", Toast.LENGTH_SHORT).show();
                 super.onBackPressed();
                 break;
 
             case R.id.register:
-                Toast.makeText(this, "등록", Toast.LENGTH_SHORT).show();
-
                 try{
                     uploadProfile(changeToBytes(), tempFile.getName());
                 }catch (Exception e){

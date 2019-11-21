@@ -150,6 +150,7 @@ public class SignActivity extends AppCompatActivity {
                 public void onResponse(Call<Response<Data>> call, retrofit2.Response<Response<Data>> response) {
                     if (response.code() == 200) {
                         Toast.makeText(SignActivity.this, "서명을 완료했습니다.", Toast.LENGTH_SHORT).show();
+                        SignActivity.super.onBackPressed();
                     } else if (response.code() == 401) {
                         Toast.makeText(SignActivity.this, "-", Toast.LENGTH_SHORT).show();
                     }

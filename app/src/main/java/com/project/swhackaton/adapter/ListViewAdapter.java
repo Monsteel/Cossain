@@ -23,17 +23,17 @@ import com.project.swhackaton.view.SignActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHolder>{
+public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHolder> {
 
     private final List<ListModel> mDataList;
 
-    public ListViewAdapter(List<ListModel> dataList){
+    public ListViewAdapter(List<ListModel> dataList) {
         mDataList = dataList;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -43,23 +43,21 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
         ListModel listModel = mDataList.get(position);
 
         holder.title.setText(listModel.getTitle());
-        holder.content.setText("계약자 1 : "+listModel.getA_id()+"\n계약자 2 : "+listModel.getB_id());
+        holder.content.setText("계약자 1 : " + listModel.getA_id() + "\n계약자 2 : " + listModel.getB_id());
 
-        if(listModel.isResolve()) {
+        if (listModel.isResolve()) {
             holder.status.setTextColor(Color.parseColor("#655EEB"));
             holder.status.setText("완료");
-        }else{
+        } else {
             holder.status.setTextColor(Color.parseColor("#D81B60"));
             holder.status.setText("진행중");
         }
 
         holder.cardView.setOnClickListener(v -> {
-            if(!mDataList.get(position).isResolve()){
-                Activity activity = (Activity) holder.content.getContext();
-                Intent intent = new Intent(holder.title.getContext(), SignActivity.class);
-                intent.putExtra("id01",mDataList.get(position).get_id()+"");
-                activity.startActivity(intent);
-            }
+            Activity activity = (Activity) holder.content.getContext();
+            Intent intent = new Intent(holder.title.getContext(), SignActivity.class);
+            intent.putExtra("id01", mDataList.get(position).get_id() + "");
+            activity.startActivity(intent);
         });
     }
 
