@@ -1,5 +1,7 @@
 package com.project.swhackaton.adapter;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -50,6 +52,11 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
             holder.status.setText("진행중");
         }
 
+        holder.cardView.setOnClickListener(v -> {
+            Activity activity = (Activity) holder.content.getContext();
+            Intent intent = new Intent(holder.title.getContext(), ListModel.class);
+            activity.startActivity(intent);
+        });
     }
 
     @Override
@@ -61,10 +68,12 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
         TextView title;
         TextView content;
         TextView status;
+        CardView cardView;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.cardView);
             title = itemView.findViewById(R.id.title);
             content = itemView.findViewById(R.id.content);
             status = itemView.findViewById(R.id.status);

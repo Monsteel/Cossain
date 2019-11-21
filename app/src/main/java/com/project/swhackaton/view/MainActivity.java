@@ -62,6 +62,21 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("", "네트워크 오류");
                 }
             });
+
+            Call<Response<Data>> getUserInfo = NetRetrofit.getInstance().getContractService().getUserInfo(loginData.getString("token",""));
+
+            Log.e("", loginData.getString("token","")+"++");
+            getUserInfo.enqueue(new Callback<Response<Data>>() {
+                @Override
+                public void onResponse(Call<Response<Data>> call, retrofit2.Response<Response<Data>> response) {
+                    binding.helloUser.setText(response.body().getData().getUser().getName()+"님,\n안녕하세요.");
+                }
+
+                @Override
+                public void onFailure(Call<Response<Data>> call, Throwable t) {
+                    Log.e("", "네트워크 오류");
+                }
+            });
         }
     }
 

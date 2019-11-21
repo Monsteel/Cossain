@@ -26,4 +26,7 @@ public interface ContractService {
 
     @GET("/contract")
     Call<Response<Data>> getContractList(@Header("x-access-token")String token);
+
+    @GET("/info")
+    Call<Response<Data>> getUserInfo(@Header("x-access-token")String token);
 }
