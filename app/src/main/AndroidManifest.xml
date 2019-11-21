@@ -9,24 +9,30 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/cosign_logo"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.SignActivity"></activity>
-        <activity android:name=".view.ContractActivity"></activity>
-        <activity android:name=".view.SignUpAcitivty" />
-        <activity android:name=".view.LoginActivity"></activity>
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".view.SignActivity" />
+        <activity android:name=".view.ContractActivity" />
+        <activity android:name=".view.SignUpAcitivty" />
+        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.MainActivity">
         </activity>
     </application>
 

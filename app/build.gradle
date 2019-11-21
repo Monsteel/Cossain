@@ -21,8 +21,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     allprojects {
-        repositories { maven {
-            url 'https://jitpack.io' } } }
+        repositories {
+            maven {
+                url 'https://jitpack.io'
+            }
+        }
+    }
 
     buildTypes {
         release {
@@ -68,6 +72,9 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:29.1.0'
 
     implementation 'com.github.karrel84:RellSignView:0.0.1'
+
+    // SpinKit
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
 
 }

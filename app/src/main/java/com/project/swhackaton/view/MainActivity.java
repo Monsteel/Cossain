@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -28,7 +29,6 @@ import retrofit2.Callback;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-    MainViewModel viewModel;
     SharedPreferences loginData;
     List<ListModel> DataList = new ArrayList<>();
 
@@ -86,5 +86,9 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    public void register(View view){
+        startActivity(new Intent(MainActivity.this, ContractActivity.class));
     }
 }

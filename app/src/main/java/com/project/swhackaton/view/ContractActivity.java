@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -53,6 +54,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.http.POST;
 
 public class ContractActivity extends AppCompatActivity {
 
@@ -120,11 +122,17 @@ public class ContractActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
                 Toast.makeText(this, "취소", Toast.LENGTH_SHORT).show();
+                super.onBackPressed();
                 break;
 
             case R.id.register:
                 Toast.makeText(this, "등록", Toast.LENGTH_SHORT).show();
-                uploadProfile(changeToBytes(), tempFile.getName());
+
+                try{
+                    uploadProfile(changeToBytes(), tempFile.getName());
+                }catch (Exception e){
+                    Toast.makeText(this, "올바른 거래 계약서를 작성하여주십시오.", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -308,6 +316,8 @@ public class ContractActivity extends AppCompatActivity {
 
                 if(response.code() == 200){
                     Toast.makeText(ContractActivity.this, "거래 계약서 작성을 완료하였습니다.", Toast.LENGTH_SHORT).show();
+
+                    startActivity(new Intent(ContractActivity.this, MainActivity.class));
                 } else if(response.code() == 401){
                     Toast.makeText(ContractActivity.this, "거래자의 ID 정보가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
