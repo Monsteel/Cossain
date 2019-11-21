@@ -5,14 +5,15 @@ import com.project.swhackaton.network.Response;
 import com.project.swhackaton.network.requeset.SignUpRequest;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface SignUpService {
 
 
-    @POST("/auth/signup")
-    Call<Response<Data>> SignUpRequest(SignUpRequest signUpRequest);
+    @POST("/register")
+    Call<Response<Data>> SignUpRequest(@Body SignUpRequest signUpRequest);
 
 //    @Multipart
 //    @POST("/image/upload/thumbnail")

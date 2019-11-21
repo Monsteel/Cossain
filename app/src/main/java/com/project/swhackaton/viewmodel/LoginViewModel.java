@@ -1,7 +1,5 @@
 package com.project.swhackaton.viewmodel;
 
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
@@ -11,7 +9,6 @@ import com.project.swhackaton.network.Response;
 import com.project.swhackaton.network.requeset.LoginRequest;
 import com.project.swhackaton.widget.SingleLiveEvent;
 
-import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.Callback;
 
