@@ -34,6 +34,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    repositories {
+        mavenCentral()
+    }
 }
 
 dependencies {
@@ -71,7 +74,9 @@ dependencies {
     implementation 'com.android.support:cardview-v7:29.1.0'
     implementation 'com.android.support:recyclerview-v7:29.1.0'
 
-    implementation 'com.github.karrel84:RellSignView:0.0.1'
+
+    //draw
+    implementation "com.github.gcacace:signature-pad:1.2.0"
 
     // SpinKit
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'

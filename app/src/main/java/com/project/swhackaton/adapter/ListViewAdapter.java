@@ -57,7 +57,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
             if(!mDataList.get(position).isResolve()){
                 Activity activity = (Activity) holder.content.getContext();
                 Intent intent = new Intent(holder.title.getContext(), SignActivity.class);
-                intent.putExtra("id",mDataList.get(position).get_id());
+                intent.putExtra("id01",mDataList.get(position).get_id()+"");
                 activity.startActivity(intent);
             }
         });
