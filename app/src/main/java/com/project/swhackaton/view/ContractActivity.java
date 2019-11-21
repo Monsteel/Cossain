@@ -1,13 +1,16 @@
 package com.project.swhackaton.view;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +23,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.webkit.MimeTypeMap;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.gun0912.tedpermission.PermissionListener;
@@ -72,6 +76,9 @@ public class ContractActivity extends AppCompatActivity {
     private String fileType;
     private String uploadName;
 
+    // SharedPreferences
+    SharedPreferences loginData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,15 +90,22 @@ public class ContractActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
 
+        loginData =  getSharedPreferences("Login", MODE_PRIVATE);
+
         fab_open = AnimationUtils.loadAnimation(ContractActivity.this, R.anim.fab_open);
         fab_close = AnimationUtils.loadAnimation(ContractActivity.this, R.anim.fab_close);
 
-        binding.date.setText(simpleDateFormat.format(today));
-
+        setDate();
         initLayout();
         toggleFab();
     }
 
+    // Date 텍스트의 날짜를 설정한다.
+    public void setDate(){
+        binding.date.setText(simpleDateFormat.format(today));
+    }
+
+    // Toolbar 설정
     public void initLayout(){
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setTitle("");
@@ -99,6 +113,7 @@ public class ContractActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_keyboard_backspace_black_24dp);
     }
 
+    // Toolbar Event
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -109,12 +124,13 @@ public class ContractActivity extends AppCompatActivity {
 
             case R.id.register:
                 Toast.makeText(this, "등록", Toast.LENGTH_SHORT).show();
+                uploadProfile(changeToBytes(), tempFile.getName());
                 break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
+    // Toolbar Menu 설정
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -160,34 +176,31 @@ public class ContractActivity extends AppCompatActivity {
         }
     }
 
+    // Phone 권한 설정
     public void tedPermission(){
 
         PermissionListener permissionListener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
-
                 goToAlbum();
             }
 
             @Override
             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-
             }
         };
-
         TedPermission.with(this)
                 .setPermissionListener(permissionListener)
                 .setRationaleMessage("[설정] > [권한] 에서 권한을 허용할 수 있습니다.")
                 .setDeniedMessage("사진 및 파일을 저장하기 위하여 접근 권한이 필요합니다.")
                 .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
                 .check();
-
     }
 
+    // Album Setting
     public void goToAlbum(){
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-
         startActivityForResult(intent, PICK_FROM_ALBUM);
     }
 
@@ -243,7 +256,6 @@ public class ContractActivity extends AppCompatActivity {
                 try {
 
                     binding.file.setImageURI(Uri.fromFile(tempFile));
-                    uploadProfile(changeToBytes(), tempFile.getName());
                 } catch (NullPointerException e) {
 
                 }
@@ -255,7 +267,7 @@ public class ContractActivity extends AppCompatActivity {
         }
     }
 
-    //이미지파일을 비트로 바꿉니다
+    // 이미지파일을 비트로 바꿉니다
     private byte[] changeToBytes() {
 
         int size = (int) tempFile.length();
@@ -272,6 +284,7 @@ public class ContractActivity extends AppCompatActivity {
         return bytes;
     }
 
+    // Profile Upload
     public void uploadProfile(byte[] imageBytes, String originalName){
 
         String[] filenameArray = originalName.split("\\.");
@@ -284,30 +297,56 @@ public class ContractActivity extends AppCompatActivity {
 
         RequestBody requestFile = RequestBody.create(MediaType.parse(Objects.requireNonNull(fileType)), imageBytes);
 
-        MultipartBody.Part body = MultipartBody.Part.createFormData("profile_pic", uploadName + fileExt, requestFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("picture", uploadName + fileExt, requestFile);
 
         RequestBody fileNameBody = RequestBody.create(MediaType.parse("text/plain"), uploadName);
 
-//        ContractRequest contractRequest = new ContractRequest();
-//        Call<Response<Data>> res  = NetRetrofit.getInstance()..uploadProfile(Login.getString("token",""), body, fileNameBody, contractRequest);
-//        res.enqueue(new Callback<Response<Data>>() {
-//            @Override
-//            public void onResponse(Call<Response<Data>> call, retrofit2.Response<Response<Data>> response) {
-//                if(response.code() ==200)
-//                {
-//                    Log.e("[upload]", "성공");
-//
-//                    Intent intent = new Intent(AccountActivity.this, MainActivity.class);
-//                    intent.putExtra("profile", true);
-//                    startActivity(intent);
-//                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//                }
-//            }
-//            @Override
-//            public void onFailure(Call<Response<Data>> call, Throwable t) {
-//
-//                Log.e("[upload]", "실패");
-//            }
-//        });
+        Call<Response<Data>> res  = NetRetrofit.getInstance().getContractService().uploadProfile(loginData.getString("token",""), body, fileNameBody, binding.title.getText().toString(),binding.select.getText().toString());
+        res.enqueue(new Callback<Response<Data>>() {
+            @Override
+            public void onResponse(Call<Response<Data>> call, retrofit2.Response<Response<Data>> response) {
+
+                if(response.code() == 200){
+                    Toast.makeText(ContractActivity.this, "거래 계약서 작성을 완료하였습니다.", Toast.LENGTH_SHORT).show();
+                } else if(response.code() == 401){
+                    Toast.makeText(ContractActivity.this, "거래자의 ID 정보가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Response<Data>> call, Throwable t) {
+
+                Toast.makeText(ContractActivity.this, "거래 계약서 작성을 실패하였습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // AlertDialog SelectUser
+    public void selectUser(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("입력");
+        builder.setMessage("거래를 진행할 대상의 ID 를 입력해주세요.");
+        builder.setIcon(R.drawable.ic_message_black_24dp);
+
+        EditText editText = new EditText(this);
+        builder.setView(editText);
+
+        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Toast.makeText(ContractActivity.this, "okay", Toast.LENGTH_SHORT).show();
+                binding.select.setText(editText.getText().toString());
+            }
+        });
+
+        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(ContractActivity.this, "no", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

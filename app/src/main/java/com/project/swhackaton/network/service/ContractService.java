@@ -13,6 +13,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 public interface ContractService {
 
@@ -29,4 +30,12 @@ public interface ContractService {
 
     @GET("/info")
     Call<Response<Data>> getUserInfo(@Header("x-access-token")String token);
+
+    @Multipart
+    @POST("/contract")
+    Call<Response<Data>> uploadProfile(@Header("x-access-token") String token,
+                                       @Part MultipartBody.Part picture,
+                                       @Part("picture") RequestBody name,
+                                       @Query("title") String title,
+                                       @Query("b_id") String b_id);
 }
