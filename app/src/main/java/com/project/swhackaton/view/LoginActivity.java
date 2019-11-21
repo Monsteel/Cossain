@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -54,6 +55,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onChanged(String s) {
                 Log.e("Login", "로그인을 정상적으로 수행하였습니다.");
                 Toast.makeText(LoginActivity.this, "로그인을 정상적으로 수행하였습니다.", Toast.LENGTH_SHORT).show();
+
+                SharedPreferences loginData = getSharedPreferences("Login", MODE_PRIVATE);
+                SharedPreferences.Editor editor = loginData.edit();
+
+                editor.putString("id", viewModel.id);
+                editor.commit();
+
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
         });
         viewModel.loginErrorEvent.observe(this, new Observer<String>() {
