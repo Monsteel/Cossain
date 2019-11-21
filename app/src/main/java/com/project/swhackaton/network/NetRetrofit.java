@@ -1,6 +1,7 @@
 package com.project.swhackaton.network;
 
 import com.project.swhackaton.network.service.LoginService;
+import com.project.swhackaton.network.service.SignUpService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -23,6 +24,11 @@ public class NetRetrofit {
     LoginService login = retrofit.create(LoginService.class);
     public LoginService getLogin() {
         return login;
+    }
+
+    SignUpService signUpService = retrofit.create(SignUpService.class);
+    public SignUpService getSignUp() {
+        return signUpService;
     }
 }
 
