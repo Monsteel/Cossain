@@ -76,7 +76,12 @@ public class MainActivity extends AppCompatActivity {
             getUserInfo.enqueue(new Callback<Response<Data>>() {
                 @Override
                 public void onResponse(Call<Response<Data>> call, retrofit2.Response<Response<Data>> response) {
-                    binding.helloUser.setText(response.body().getData().getUser().getName()+"님,\n안녕하세요.");
+
+                    try{
+                        binding.helloUser.setText(response.body().getData().getUser().getName()+"님,\n안녕하세요.");
+                    } catch(Exception e){
+                        Toast.makeText(MainActivity.this, "가입된 계정이 없다.", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 @Override

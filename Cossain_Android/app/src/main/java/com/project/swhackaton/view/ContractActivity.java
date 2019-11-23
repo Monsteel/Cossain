@@ -341,8 +341,6 @@ public class ContractActivity extends AppCompatActivity {
         builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                Toast.makeText(ContractActivity.this, "okay", Toast.LENGTH_SHORT).show();
                 binding.select.setText(editText.getText().toString());
             }
         });
@@ -350,7 +348,6 @@ public class ContractActivity extends AppCompatActivity {
         builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(ContractActivity.this, "no", Toast.LENGTH_SHORT).show();
             }
         });
 
