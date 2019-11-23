@@ -15,15 +15,15 @@
 - 자신이 현재 또는 과거의 거래 내역들을 확인할 수 있는 기능
 - 거래를 함께 진행하는 피거래자 선택 및 거래 내용 사진 업로드 기능 
 - 자신이 현재 포함된 거래에 대해서 전자 서명을 할 수 있도록 도와준는 기능
-- 블록체인 기술의 장점을 활용해서 안전한 보안 속에서 거래를 진행할 수 있 가능
+- 블록체인 기술의 장점을 활용해서 안전한 보안 속에서 거래를 진행할 수 있는 기능
 - Android 플랫폼을 이용하여서 모바일 환경에서 쉽고 빠르게 거래를 할 수 있는 기능
 
 ## Stack
-|                      | Android     | Server        | Window| Web|
+|                      | Android     | Server        | Block Chain | Design  |
 |:--------------------:|:---------------:|:------------------:|:-----:|:----:|
-| Development People | 김주엽, 이영은 | 최진우       |김경훈|권순관, 김혜선, 오하형|
-| Development Language | Java, Retrofit2 | Java Script        | C#, Uwp | Js, React, Html, CSS|
-| Development Tool     | Android Studio  | Visual Studio Code |Visual Studio| Visual Studio Code|
+| Development People | 김주엽, 이영은 | 최이삭       |김성욱 |김수환, 유현주|
+| Development Language | Java, Retrofit2 | Java Script        | Python ||
+| Development Tool     | Android Studio  | Visual Studio Code | Visual Studio| Adobe Illustrator, Photoshop, XD|
 
 ## UI/UX
 <div>
