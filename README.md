@@ -35,4 +35,9 @@
 <img width="160" src="https://user-images.githubusercontent.com/49600974/69478087-95f0e400-0e31-11ea-9e3c-a66dcd42fe0a.jpg"></img>
 </div>
 
+## 2019 SW 마이스터고 융합 해커톤
+  - 2019 SW 마이스터고 융합 해커톤에서 Cossain 이라는 프로젝트 성공적으로 마쳤습니다.
+  - 네이버 블로그 <a href ="http://kjy13299.blog.me/221716467659" target ="_blank" title ="2019 SW 마이스터고 융합 해커톤">2019 ICT 융합 엑스포 </a>
+ 
+
  
