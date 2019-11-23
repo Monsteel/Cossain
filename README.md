@@ -23,7 +23,7 @@
 |:--------------------:|:---------------:|:------------------:|:-----:|:----:|
 | Develop People | 김주엽, 이영은 | 최이삭       |김성욱 |김수환, 유현주|
 | Develop School | Daegu | Daedeok       | Daedeok | Gwangju|
-| Development Language            | Java, Retrofit2||||
+| Develop Language | Java, Retrofit2| JavaScript| Python| |
 | Develo Tool     | Android Studio  | Visual Studio Code | Visual Studio| Adobe Illustrator, Photoshop, XD|
 
 ## UI/UX
