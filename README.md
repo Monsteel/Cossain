@@ -28,11 +28,11 @@
 
 ## UI/UX
 <div>
-<img width="160" src="https://user-images.githubusercontent.com/49600974/69478087-95f0e400-0e31-11ea-9e3c-a66dcd42fe0a.jpg"></img>
 <img width="160" src="https://user-images.githubusercontent.com/49600974/69478088-96897a80-0e31-11ea-8b50-989b302d6c39.jpg"></img>
 <img width="160" src="https://user-images.githubusercontent.com/49600974/69478089-96897a80-0e31-11ea-8d16-cc6dd0e89d40.jpg"></img>
 <img width="160" src="https://user-images.githubusercontent.com/49600974/69478090-96897a80-0e31-11ea-9511-986b6163885d.jpg"></img>
 <img width="160" src="https://user-images.githubusercontent.com/49600974/69478091-97221100-0e31-11ea-9785-a33047b7c735.jpg"></img>
+<img width="160" src="https://user-images.githubusercontent.com/49600974/69478087-95f0e400-0e31-11ea-9e3c-a66dcd42fe0a.jpg"></img>
 </div>
 
 ## 2019 ICT Expo
