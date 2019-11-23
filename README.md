@@ -22,7 +22,7 @@
 |                      | Android     | Server        | Block Chain | Design  |
 |:--------------------:|:---------------:|:------------------:|:-----:|:----:|
 | Development People | 김주엽, 이영은 | 최이삭       |김성욱 |김수환, 유현주|
-| Development Language | Java, Retrofit2 | Java Script        | Python ||
+| Development Language | Java, Retrofit2 | Java Script        | Python | |
 | Development Tool     | Android Studio  | Visual Studio Code | Visual Studio| Adobe Illustrator, Photoshop, XD|
 
 ## UI/UX
