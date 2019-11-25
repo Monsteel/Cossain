@@ -19,9 +19,9 @@
 ## Stack
 |                      | Android     | Server        | Block Chain | Design  |
 |:--------------------:|:---------------:|:------------------:|:-----:|:----:|
-| Develop People | 김주엽, 이영은 | 최이삭       |김성욱 |김수환, 유현주|
-| Develop School | Daegu | Daedeok       | Daedeok | Gwangju|
-| Develop Language | Java, Retrofit2| JavaScript| Python| |
+| Developer | 김주엽, 이영은 | 최이삭       |김성욱 |김수환, 유현주|
+| School | Daegu | Daedeok       | Daedeok | Gwangju|
+| Stack | Java, Retrofit2| JavaScript| Python| |
 | Develop Tool     | Android Studio  | Visual Studio Code | Visual Studio| Adobe Illustrator, Photoshop, XD|
 
 ## UI/UX
